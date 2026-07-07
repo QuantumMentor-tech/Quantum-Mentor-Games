@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Block admin and private directories
+Disallow: /admin/
+Disallow: /includes/
+Disallow: /database/
+Disallow: /logs/
+Disallow: /assets/uploads/temp/
+
+# Block sensitive files
+Disallow: /.htaccess
+Disallow: /robots.txt
+
+# Sitemap location
+# PRODUCTION DEPLOYMENT NOTE: Replace localhost URL with your live domain.
+# e.g. Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: http://localhost/quantum-mentor-games-store/sitemap.xml

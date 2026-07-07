@@ -1,0 +1,930 @@
+/* ============================================================
+   QMGames Store — Responsive Stylesheet
+   Step: 5 — Dark/Light Theme Polish
+   All colours use CSS variables — theme-safe at every breakpoint.
+   ============================================================ */
+
+/* ── XL : 1200px ── */
+@media (max-width: 1200px) {
+  .grid-4 { grid-template-columns: repeat(3, 1fr); }
+  .grid-5 { grid-template-columns: repeat(4, 1fr); }
+  .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2.5rem; }
+}
+
+/* ── LG : 992px (tablet landscape) ── */
+@media (max-width: 992px) {
+  /* Navbar: hide links + search, show hamburger */
+  .navbar-nav        { display: none; }
+  .navbar-search-btn { display: none; }
+  .hamburger         { display: flex; }
+
+  /* Theme toggle: hide label text to save space */
+  .theme-toggle .theme-btn-label { display: none; }
+  .theme-toggle { width: 38px; padding: 0; justify-content: center; }
+
+  /* Grids */
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-5 { grid-template-columns: repeat(3, 1fr); }
+
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .footer-brand-col { grid-column: 1 / -1; }
+
+  /* Sections */
+  .section    { padding: 4rem 0; }
+  .section-sm { padding: 3rem 0; }
+}
+
+/* ── MD : 768px (tablet portrait / large mobile) ── */
+@media (max-width: 768px) {
+  html { font-size: 15px; }
+
+  .container,
+  .container-sm { padding: 0 1.1rem; }
+
+  /* All multi-col grids → 1 col */
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .grid-5 { grid-template-columns: 1fr; }
+
+  /* Allow explicit 2-col override */
+  .grid-2.keep-2 { grid-template-columns: repeat(2, 1fr); }
+
+  /* Hero */
+  .hero { padding: 5.5rem 0 3.5rem; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { justify-content: center; }
+
+  /* Page hero */
+  .page-hero { padding: 3.5rem 0 2.25rem; }
+
+  /* Footer: single column */
+  .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+  .footer-brand-col { grid-column: auto; }
+  .footer-bottom-inner { flex-direction: column; text-align: center; }
+  .footer-copy-links { justify-content: center; }
+
+  /* Sections */
+  .section    { padding: 3rem 0; }
+  .section-sm { padding: 2.25rem 0; }
+
+  /* Input group: stack vertically */
+  .input-group { flex-direction: column; }
+  .input-group .form-control { border-radius: var(--radius-sm); }
+  .input-group .btn           { border-radius: var(--radius-sm); }
+
+  /* Game detail layout */
+  .game-detail-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── SM : 576px ── */
+@media (max-width: 576px) {
+  html { font-size: 14.5px; }
+
+  .container,
+  .container-sm { padding: 0 1rem; }
+
+  /* Hide brand badge in navbar to save width */
+  .brand-name-badge { display: none; }
+
+  /* Buttons */
+  .btn-lg { padding: 0.7rem 1.5rem; font-size: 0.95rem; }
+
+  /* Cards */
+  .card-body  { padding: 1.1rem; }
+  .card-header,
+  .card-footer { padding: 0.75rem 1.1rem; }
+
+  /* Games grid stays 2-col on larger mobiles */
+  .grid-4.games-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Hero */
+  .hero { padding: 5rem 0 3rem; }
+  .hero-badge { font-size: 0.62rem; }
+
+  /* Footer */
+  .footer { margin-top: 3rem; }
+
+  /* Section header */
+  .section-header { margin-bottom: 2rem; }
+
+  /* Info box */
+  .info-box { padding: 0.9rem 1.1rem; }
+
+  /* Theme toggle label always hidden on small screens */
+  .theme-toggle .theme-btn-label { display: none; }
+  .theme-toggle { width: 38px; padding: 0; justify-content: center; }
+}
+
+/* ── XS : 400px ── */
+@media (max-width: 400px) {
+  html { font-size: 14px; }
+
+  /* Games grid → 1 col on smallest screens */
+  .grid-4.games-grid { grid-template-columns: 1fr; }
+
+  .hero-title { font-size: 1.7rem; }
+  .btn { font-size: 0.875rem; padding: 0.58rem 1.1rem; }
+  .btn-lg { font-size: 0.9rem; padding: 0.62rem 1.2rem; }
+}
+
+/* ── Landscape mobile ── */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero { padding: 4.5rem 0 2.5rem; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Print ── */
+@media print {
+  .navbar,
+  .footer,
+  .hero-actions,
+  .btn,
+  .theme-toggle,
+  .hamburger { display: none !important; }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .card { box-shadow: none !important; border: 1px solid #ccc !important; }
+  a { color: #000 !important; text-decoration: underline !important; }
+}
+
+/* ============================================================
+   Step 6 — HOMEPAGE RESPONSIVE
+   ============================================================ */
+
+/* ── XL: 1200px ── */
+@media (max-width: 1200px) {
+  .home-hero-grid     { grid-template-columns: 1fr 380px; gap: 3rem; }
+  .features-grid      { grid-template-columns: repeat(4, 1fr); }
+  .game-card-grid     { grid-template-columns: repeat(3, 1fr); }
+  .category-grid      { grid-template-columns: repeat(4, 1fr); }
+  .future-feature-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── LG: 992px ── */
+@media (max-width: 992px) {
+  /* Hero: stack vertically */
+  .home-hero-grid     { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-content       { max-width: 100%; }
+  .hero-visual        { justify-content: center; }
+  .hero-panel         { max-width: 480px; width: 100%; }
+
+  .features-grid      { grid-template-columns: repeat(2, 1fr); }
+  .game-card-grid     { grid-template-columns: repeat(2, 1fr); }
+  .category-grid      { grid-template-columns: repeat(3, 1fr); }
+  .future-feature-grid{ grid-template-columns: repeat(3, 1fr); }
+
+  /* Low-end: stack */
+  .low-end-inner      { grid-template-columns: 1fr; gap: 2rem; }
+  .low-end-grid       { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── MD: 768px ── */
+@media (max-width: 768px) {
+  .home-hero { padding: 4rem 0 3rem; }
+
+  .hero-title  { font-size: clamp(1.75rem, 6vw, 2.5rem); }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { justify-content: center; }
+
+  /* Search: stack button below */
+  .home-search-form { flex-direction: column; border-radius: var(--radius-md); overflow: visible; box-shadow: none; gap: 0.75rem; }
+  .home-search-input { border-radius: var(--radius-md) !important; border-right: 1px solid var(--input-border); height: 48px; }
+  .home-search-btn   { border-radius: var(--radius-md) !important; height: 48px; }
+
+  .features-grid      { grid-template-columns: repeat(2, 1fr); }
+  .game-card-grid     { grid-template-columns: repeat(2, 1fr); }
+  .category-grid      { grid-template-columns: repeat(3, 1fr); }
+  .future-feature-grid{ grid-template-columns: repeat(2, 1fr); }
+
+  .low-end-grid       { grid-template-columns: repeat(3, 1fr); }
+
+  .legal-notice-inner { flex-direction: column; gap: 1.25rem; }
+  .legal-notice-icon  { margin-top: 0; }
+
+  .cta-actions { flex-direction: column; align-items: center; }
+}
+
+/* ── SM: 576px ── */
+@media (max-width: 576px) {
+  .hero-badges { gap: 0.4rem; }
+  .hero-trust-badge { font-size: 0.7rem; padding: 0.22rem 0.6rem; }
+
+  .features-grid  { grid-template-columns: 1fr; }
+  .game-card-grid { grid-template-columns: 1fr; }
+  .category-grid  { grid-template-columns: repeat(2, 1fr); }
+  .future-feature-grid { grid-template-columns: repeat(2, 1fr); }
+  .low-end-grid   { grid-template-columns: repeat(2, 1fr); }
+
+  .hero-panel { max-width: 100%; }
+
+  .cta-title    { font-size: 1.7rem; }
+  .cta-subtitle { font-size: 0.9rem; }
+}
+
+/* ── XS: 400px ── */
+@media (max-width: 400px) {
+  .category-grid       { grid-template-columns: repeat(2, 1fr); }
+  .future-feature-grid { grid-template-columns: 1fr; }
+  .low-end-grid        { grid-template-columns: 1fr; }
+  .hero-stat-grid      { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ============================================================
+   Step 7 — GAMES LISTING PAGE RESPONSIVE
+   ============================================================ */
+
+/* ── XL: 1200px ── */
+@media (max-width: 1200px) {
+  .games-layout   { grid-template-columns: 240px 1fr; }
+  .games-grid     { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── LG: 992px (tablet landscape) ── */
+@media (max-width: 992px) {
+  /* Sidebar collapses: move filter above results */
+  .games-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .games-filter-panel {
+    position: static; /* un-sticky on mobile */
+  }
+
+  /* Filter form becomes horizontal grid */
+  .filter-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .filter-actions {
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+
+  .games-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── MD: 768px ── */
+@media (max-width: 768px) {
+  .filter-form { grid-template-columns: 1fr; }
+
+  .filter-actions { flex-direction: column; }
+
+  .games-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .results-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pagination { gap: 0.3rem; }
+
+  .pagination-link {
+    min-width: 34px;
+    height: 34px;
+    font-size: 0.82rem;
+    padding: 0 0.6rem;
+  }
+
+  .pagination-prev,
+  .pagination-next { padding: 0 0.75rem; }
+}
+
+/* ── SM: 576px ── */
+@media (max-width: 576px) {
+  .games-grid { grid-template-columns: 1fr; }
+
+  .games-hero-badges { justify-content: flex-start; }
+
+  .active-filters { max-width: 100%; }
+
+  .filter-badge { font-size: 0.72rem; }
+
+  .empty-state-actions { flex-direction: column; align-items: stretch; }
+  .empty-state-actions .btn { justify-content: center; }
+}
+
+/* ── XS: 360px ── */
+@media (max-width: 360px) {
+  .games-filter-panel { padding: 1rem; }
+  .pagination-link { min-width: 30px; height: 30px; font-size: 0.78rem; }
+}
+
+/* ============================================================
+   Step 8 — CATEGORY SYSTEM RESPONSIVE
+   ============================================================ */
+
+/* ── XL: 1200px ── */
+@media (max-width: 1200px) {
+  .category-directory-grid  { grid-template-columns: repeat(3, 1fr); }
+  .category-highlight-grid  { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ── LG: 992px ── */
+@media (max-width: 992px) {
+  .category-directory-grid  { grid-template-columns: repeat(3, 1fr); }
+  .category-highlight-grid  { grid-template-columns: repeat(3, 1fr); }
+  .category-hero             { padding: 3rem 0 2.5rem; }
+}
+
+/* ── MD: 768px ── */
+@media (max-width: 768px) {
+  .category-directory-grid  { grid-template-columns: repeat(2, 1fr); }
+  .category-highlight-grid  { grid-template-columns: repeat(3, 1fr); }
+  .category-stats            { gap: 1.25rem; }
+  .category-hero-actions     { flex-direction: column; align-items: flex-start; }
+}
+
+/* ── SM: 576px ── */
+@media (max-width: 576px) {
+  .category-directory-grid  { grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+  .category-highlight-grid  { grid-template-columns: repeat(2, 1fr); }
+  .category-card-inner       { padding: 1.1rem 1rem; }
+  .category-icon-large       { font-size: 2.8rem; }
+}
+
+/* ── XS: 360px ── */
+@media (max-width: 360px) {
+  .category-directory-grid  { grid-template-columns: 1fr; }
+  .category-highlight-grid  { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================================================
+   Step 9 — GAME DETAIL PAGE RESPONSIVE
+   ============================================================ */
+
+/* ── XL: 1200px ── */
+@media (max-width: 1200px) {
+  .game-detail-hero-grid    { grid-template-columns: 200px 1fr; gap: 2rem; }
+  .game-detail-main-grid    { grid-template-columns: 1fr 260px; }
+  .screenshot-grid           { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── LG: 992px ── */
+@media (max-width: 992px) {
+  .game-detail-main-grid {
+    grid-template-columns: 1fr;
+  }
+  .game-info-panel {
+    position: static; /* un-sticky on smaller screens */
+    order: -1;        /* info panel appears above main content */
+  }
+  .requirements-grid { grid-template-columns: 1fr 1fr; }
+  .screenshot-grid    { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── MD: 768px ── */
+@media (max-width: 768px) {
+  /* Hero stacks vertically */
+  .game-detail-hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .game-cover-card {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .game-meta-row  { justify-content: center; }
+  .game-hero-actions {
+    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .game-hero-actions .btn { justify-content: center; }
+
+  .breadcrumb { justify-content: center; }
+
+  .screenshot-grid    { grid-template-columns: repeat(2, 1fr); }
+  .requirements-grid  { grid-template-columns: 1fr; }
+  .download-option-header { flex-direction: column; }
+
+  .report-problem-inner { flex-direction: column; }
+}
+
+/* ── SM: 576px ── */
+@media (max-width: 576px) {
+  .game-detail-section       { padding: 1.25rem; }
+  .game-detail-section-title { font-size: 1rem; }
+  .screenshot-grid           { grid-template-columns: 1fr; }
+  .game-info-item            { padding: 0.55rem 1rem; }
+  .download-option-card      { padding: 1rem; }
+  .game-title                { font-size: 1.6rem; }
+}
+
+/* ── XS: 360px ── */
+@media (max-width: 360px) {
+  .game-detail-hero { padding: 3rem 0 2.5rem; }
+  .game-title       { font-size: 1.4rem; }
+}
+
+/* ============================================================
+   Step 10 — DOWNLOAD PAGE RESPONSIVE
+   ============================================================ */
+
+/* ── MD: 768px ── */
+@media (max-width: 768px) {
+  .download-game-preview {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .download-cover { max-width: 160px; margin: 0 auto; }
+
+  .download-info-grid {
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+  }
+
+  .download-source-meta { flex-direction: column; }
+  .download-source-badges { justify-content: flex-start; }
+
+  .download-safety-notice { flex-direction: column; gap: 0.65rem; }
+
+  .download-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .download-actions .btn { justify-content: center; }
+}
+
+/* ── SM: 576px ── */
+@media (max-width: 576px) {
+  .download-confirmation { gap: 1rem; }
+  .download-info-grid    { grid-template-columns: repeat(2, auto); }
+  .download-game-preview { padding: 1rem; }
+}
+
+/* ── XS: 360px ── */
+@media (max-width: 360px) {
+  .download-info-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   Step 11 — ANALYTICS RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .game-card-stats { gap: 0.5rem; }
+  .game-stat       { font-size: 0.72rem; }
+  .counter-meta    { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+}
+
+@media (max-width: 576px) {
+  .stat-pill { font-size: 0.72rem; padding: 0.2rem 0.55rem; }
+  .game-card-stats { flex-wrap: wrap; }
+}
+
+@media (max-width: 360px) {
+  .game-stat { font-size: 0.68rem; }
+}
+
+/* ============================================================
+   Step 12 — REPORT PAGE RESPONSIVE
+   ============================================================ */
+
+/* ── LG: 992px ── */
+@media (max-width: 992px) {
+  .report-layout {
+    grid-template-columns: 1fr;
+  }
+  .report-sidebar {
+    position: static;
+    order: 2; /* sidebar below form on tablet */
+  }
+  .report-main { order: 1; }
+}
+
+/* ── MD: 768px ── */
+@media (max-width: 768px) {
+  .report-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .report-actions .btn { justify-content: center; }
+}
+
+/* ── SM: 576px ── */
+@media (max-width: 576px) {
+  .report-game-preview { flex-direction: column; }
+  .report-cover-img    { width: 80px; align-self: flex-start; }
+  .report-safety-note  { flex-direction: column; gap: .6rem; }
+}
+
+/* ── XS: 360px ── */
+@media (max-width: 360px) {
+  .report-actions { gap: .5rem; }
+}
+
+/* ============================================================
+   Step 13 — SEARCH SYSTEM RESPONSIVE
+   ============================================================ */
+
+/* ── XL: 1200px ── */
+@media (max-width: 1200px) {
+  .nav-search-input { width: 150px; }
+  .nav-search-input:focus { width: 190px; }
+}
+
+/* ── LG: 992px — hide navbar search on tablet/mobile ── */
+@media (max-width: 992px) {
+  .nav-search { display: none; } /* mobile search is inside drawer */
+
+  .search-hero { padding: 3.5rem 0 2.5rem; }
+}
+
+/* ── MD: 768px ── */
+@media (max-width: 768px) {
+  .search-input-group { flex-direction: column; box-shadow: none; }
+  .search-input-large {
+    border-radius: var(--radius-md) !important;
+    border-right: 1px solid var(--input-border);
+    height: 48px;
+  }
+  .search-submit-btn {
+    border-radius: var(--radius-md) !important;
+    height: 48px;
+  }
+  .search-hero-secondary { flex-direction: column; align-items: center; }
+  .search-chips          { justify-content: flex-start; }
+}
+
+/* ── SM: 576px ── */
+@media (max-width: 576px) {
+  .search-form-main  { margin-top: 1.5rem; }
+  .search-chip       { font-size: 0.8rem; padding: .28rem .7rem; }
+}
+
+/* ── XS: 360px ── */
+@media (max-width: 360px) {
+  .search-chips { gap: .35rem; }
+  .search-chip  { font-size: 0.75rem; }
+}
+
+/* ============================================================
+   Step 15 — CONTACT PAGE RESPONSIVE
+   ============================================================ */
+
+/* ── LG: 992px ── */
+@media (max-width: 992px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+  .contact-sidebar {
+    position: static;
+    order: 2;
+  }
+  .contact-form-area { order: 1; }
+}
+
+/* ── MD: 768px ── */
+@media (max-width: 768px) {
+  .form-row { grid-template-columns: 1fr; }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .form-actions .btn { justify-content: center; }
+
+  .contact-card-grid { grid-template-columns: 1fr; }
+}
+
+/* ── SM: 576px ── */
+@media (max-width: 576px) {
+  .contact-privacy-note { font-size: .74rem; }
+}
+
+/* ── XS: 360px ── */
+@media (max-width: 360px) {
+  .contact-info-card { padding: .6rem; }
+  .form-actions { gap: .5rem; }
+}
+
+/* ============================================================
+   Step 16 — ABOUT PAGE RESPONSIVE
+   ============================================================ */
+
+/* ── XL: 1200px ── */
+@media (max-width: 1200px) {
+  .roadmap-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── LG: 992px ── */
+@media (max-width: 992px) {
+  .about-hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-hero-visual { justify-content: center; }
+  .about-brand-card { max-width: 360px; width: 100%; }
+
+  .trust-grid    { grid-template-columns: repeat(2, 1fr); }
+  .roadmap-grid  { grid-template-columns: repeat(3, 1fr); }
+  .why-grid      { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* ── MD: 768px ── */
+@media (max-width: 768px) {
+  .mission-grid { grid-template-columns: 1fr; }
+  .find-grid    { grid-template-columns: repeat(2, 1fr); }
+  .trust-grid   { grid-template-columns: repeat(2, 1fr); }
+  .roadmap-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .about-hero-actions { flex-direction: column; align-items: stretch; }
+  .about-hero-actions .btn { justify-content: center; }
+
+  .legal-policy-statement { flex-direction: column; gap: .65rem; }
+  .legal-policy-actions   { flex-direction: column; align-items: stretch; }
+  .legal-policy-actions .btn { justify-content: center; }
+
+  .about-cta-actions { flex-direction: column; align-items: stretch; }
+  .about-cta-actions .btn { justify-content: center; }
+}
+
+/* ── SM: 576px ── */
+@media (max-width: 576px) {
+  .find-grid    { grid-template-columns: 1fr; }
+  .trust-grid   { grid-template-columns: 1fr; }
+  .roadmap-grid { grid-template-columns: 1fr; }
+  .about-brand-card { max-width: 100%; }
+}
+
+/* ── XS: 360px ── */
+@media (max-width: 360px) {
+  .about-cta-title { font-size: 1.5rem; }
+  .about-card { padding: 1.1rem; }
+  .legal-policy-card { padding: 1.25rem; }
+}
+
+/* ============================================================
+   Step 17 — PRIVACY POLICY PAGE RESPONSIVE
+   ============================================================ */
+
+/* ── LG: 992px — ToC stacks above content ── */
+@media (max-width: 992px) {
+  .policy-layout {
+    grid-template-columns: 1fr;
+  }
+  .policy-toc {
+    position: static;
+    order: -1; /* ToC above policy content */
+  }
+  .policy-toc-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: .25rem;
+  }
+  .policy-toc-link {
+    font-size: .78rem;
+    padding: .28rem .55rem;
+    white-space: nowrap;
+  }
+}
+
+/* ── MD: 768px ── */
+@media (max-width: 768px) {
+  .privacy-hero-actions { flex-direction: column; align-items: center; }
+
+  .policy-contact-card { grid-template-columns: 1fr; }
+
+  .policy-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .policy-actions .btn { justify-content: center; }
+}
+
+/* ── SM: 576px ── */
+@media (max-width: 576px) {
+  .policy-section { padding: 1.25rem 0; }
+  .policy-section-title { font-size: 1rem; }
+  .policy-toc-list { gap: .2rem; }
+}
+
+/* ── XS: 360px ── */
+@media (max-width: 360px) {
+  .policy-toc-link { font-size: .73rem; padding: .22rem .45rem; }
+  .policy-section-text { font-size: .88rem; }
+}
+
+/* ============================================================
+   Step 18 — DISCLAIMER PAGE RESPONSIVE
+   ============================================================ */
+
+/* ── LG: 992px ── */
+@media (max-width: 992px) {
+  .disclaimer-layout {
+    grid-template-columns: 1fr;
+  }
+  .disclaimer-toc {
+    position: static;
+    order: -1;
+  }
+  .disclaimer-toc-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: .25rem;
+  }
+  .disclaimer-toc-link {
+    font-size: .78rem;
+    padding: .28rem .55rem;
+    white-space: nowrap;
+  }
+}
+
+/* ── MD: 768px ── */
+@media (max-width: 768px) {
+  .disclaimer-hero-actions { flex-direction: column; align-items: center; }
+
+  .disclaimer-contact-card { grid-template-columns: 1fr; }
+
+  .disclaimer-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .disclaimer-actions .btn { justify-content: center; }
+}
+
+/* ── SM: 576px ── */
+@media (max-width: 576px) {
+  .disclaimer-section { padding: 1.25rem 0; }
+  .disclaimer-section-title { font-size: 1rem; }
+}
+
+/* ── XS: 360px ── */
+@media (max-width: 360px) {
+  .disclaimer-toc-link { font-size: .73rem; padding: .22rem .45rem; }
+  .disclaimer-section-text { font-size: .88rem; }
+}
+
+/* ============================================================
+   Step 19 — ADMIN PANEL RESPONSIVE
+   ============================================================ */
+
+/* ── LG: 992px — hide sidebar on tablet ── */
+@media (max-width: 992px) {
+  .admin-sidebar        { display: none; }
+  .admin-placeholder-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── MD: 768px ── */
+@media (max-width: 768px) {
+  .admin-content           { padding: 1.25rem; }
+  .admin-placeholder-grid  { grid-template-columns: 1fr; }
+  .admin-topbar            { padding: 0 1.25rem; }
+}
+
+/* ── SM: 576px (admin login) ── */
+@media (max-width: 576px) {
+  .admin-login-card { padding: 1.5rem; border-radius: var(--radius-lg); }
+  body.admin-login-page { align-items: flex-start; padding-top: 2rem; }
+}
+
+/* ── XS: 360px ── */
+@media (max-width: 360px) {
+  .admin-login-card { padding: 1.1rem; }
+  .admin-login-title { font-size: 1.2rem; }
+}
+
+/* ============================================================
+   Step 20 — ADMIN DASHBOARD RESPONSIVE
+   ============================================================ */
+
+/* ── XL: 1400px ── */
+@media (max-width: 1400px) {
+  .admin-stats-grid           { grid-template-columns: repeat(3, 1fr); }
+  .admin-quick-actions-grid   { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── LG: 992px ── */
+@media (max-width: 992px) {
+  /* Sidebar hidden by default on tablet/mobile */
+  .admin-sidebar {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    z-index: 1100;
+    height: 100vh;
+    transition: left .3s ease;
+    box-shadow: var(--shadow-card);
+  }
+
+  .admin-sidebar.open { left: 0; }
+
+  .admin-sidebar-toggle-btn { display: flex; }
+
+  .admin-stats-grid         { grid-template-columns: repeat(2, 1fr); }
+  .admin-dashboard-grid     { grid-template-columns: 1fr; }
+  .admin-quick-actions-grid { grid-template-columns: repeat(2, 1fr); }
+  .admin-health-grid        { grid-template-columns: 1fr; }
+}
+
+/* ── MD: 768px ── */
+@media (max-width: 768px) {
+  .admin-topbar { padding: 0 1rem; }
+  .admin-content { padding: 1.25rem; }
+
+  .admin-welcome-card {
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+
+  .admin-welcome-actions { flex-direction: column; align-items: stretch; }
+  .admin-welcome-actions .admin-btn { justify-content: center; }
+
+  .admin-stats-grid         { grid-template-columns: repeat(2, 1fr); }
+  .admin-quick-actions-grid { grid-template-columns: 1fr; }
+}
+
+/* ── SM: 576px ── */
+@media (max-width: 576px) {
+  .admin-stats-grid { grid-template-columns: 1fr; }
+
+  .admin-topbar-actions .admin-btn-sm:not(.theme-toggle) { display: none; }
+
+  .admin-table th,
+  .admin-table td { padding: .5rem .75rem; font-size: .78rem; }
+}
+
+/* ── XS: 360px ── */
+@media (max-width: 360px) {
+  .admin-content { padding: .9rem; }
+  .admin-welcome-title { font-size: 1.05rem; }
+  .admin-stat-value { font-size: 1.25rem; }
+}
+
+/* ============================================================
+   Step 21 — ADMIN GAME MANAGEMENT RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1200px) {
+  .admin-filter-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 992px) {
+  .admin-filter-grid { grid-template-columns: repeat(2, 1fr); }
+  .admin-form-grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .admin-filter-grid  { grid-template-columns: 1fr; }
+  .admin-form-grid-2,
+  .admin-form-grid-3  { grid-template-columns: 1fr; }
+  .admin-form-span-2  { grid-column: auto; }
+
+  .admin-form-actions { flex-direction: column; align-items: stretch; }
+  .admin-form-actions .admin-btn { justify-content: center; }
+
+  .admin-checkbox-grid { grid-template-columns: 1fr; }
+  .admin-checkbox-row  { flex-direction: column; gap: .5rem; }
+
+  .admin-filter-actions .admin-filter-count { order: -1; }
+}
+
+@media (max-width: 576px) {
+  .admin-form-card { padding: 1rem; }
+  .admin-section-title { font-size: .88rem; }
+  .admin-current-banner { max-width: 100%; }
+}
+
+/* ============================================================
+   Step 22 — ADMIN DOWNLOAD LINKS RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1200px) {
+  .admin-dl-filter-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 992px) {
+  .admin-dl-filter-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .admin-dl-filter-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   Step 23 — ADMIN CATEGORY MANAGEMENT RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 992px) {
+  .admin-cat-filter-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .admin-cat-filter-grid { grid-template-columns: 1fr; }
+}

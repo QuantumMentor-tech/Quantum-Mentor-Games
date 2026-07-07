@@ -1,0 +1,4 @@
+# QMGames Store - Error Log
+# This file records PHP and application errors.
+# Keep this file outside the public web root in production.
+# Apache should deny direct HTTP access to this file (see .htaccess).

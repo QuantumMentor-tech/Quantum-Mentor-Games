@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="225" viewBox="0 0 400 225">
+  <rect width="400" height="225" fill="#141727"/>
+  <rect x="155" y="72" width="90" height="65" rx="8" fill="#1e2235"/>
+  <polygon points="185,82 215,104 185,126" fill="#00c8ff" opacity="0.7"/>
+  <text x="200" y="168" font-family="Arial,sans-serif" font-size="13" fill="#8892a4" text-anchor="middle">Game Cover</text>
+  <text x="200" y="210" font-family="Arial,sans-serif" font-size="10" fill="#2a2f4a" text-anchor="middle">400 x 225</text>
+</svg>

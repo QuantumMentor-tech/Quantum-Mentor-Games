@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="0%" r="60%">
+      <stop offset="0%" style="stop-color:#141727"/>
+      <stop offset="100%" style="stop-color:#0d0f1a"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="400" fill="url(#bg)"/>
+  <rect x="480" y="140" width="240" height="120" rx="12" fill="#1e2235" opacity="0.8"/>
+  <text x="600" y="208" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#00c8ff" text-anchor="middle">QMGames Store</text>
+  <text x="600" y="235" font-family="Arial,sans-serif" font-size="14" fill="#8892a4" text-anchor="middle">Banner Placeholder</text>
+  <text x="600" y="385" font-family="Arial,sans-serif" font-size="12" fill="#2a2f4a" text-anchor="middle">1200 x 400 — Replace with real banner</text>
+</svg>
